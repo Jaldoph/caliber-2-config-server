@@ -64,6 +64,36 @@ stage('package the App'){
             sh "mvn clean package"
         }
     }
+    
+stage('Build the image for Docker'){
+
+        steps
+        {
+            script
+            {
+                dockerImage = docker.build("${Register}:my-image")
+            }
+        }
+}
+
+stage ('Deploy image to DockerHub'){
+
+
+
+      steps
+        {
+                script{
+                  docker.withRegistry('', RegisterCrudential)
+                    {
+                     dockerImage.push("damier-test")
+                    }
+                }
+
+        }
+
+
+
+}
  
    stage('AWS Building Bloc'){
 
