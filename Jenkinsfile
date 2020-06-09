@@ -116,7 +116,7 @@ stage ('Deploy image to DockerHub'){
                     docker.withRegistry('https://367484709954.dkr.ecr.us-east-2.amazonaws.com', "${REGION}:${ID}")
                     {
                         
-                        dockerImage.push(${Svc_Name})
+                        dockerImage.push("${Svc_Name}")
                    
                     }
                 }
