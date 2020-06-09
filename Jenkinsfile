@@ -11,6 +11,7 @@ agent any
         forTheAWSecr="367484709954.dkr.ecr.us-east-2.amazonaws.com/caliber-config"
         Region ="ecr:us-east-2"
         ID="damierTestEcr"
+        Svc_Name="caliber-config"
 
 
     }
@@ -115,7 +116,7 @@ stage ('Deploy image to DockerHub'){
                     docker.withRegistry('https://367484709954.dkr.ecr.us-east-2.amazonaws.com', "${REGION}:${ID}")
                     {
                         
-                        dockerImage.push("damier-test")
+                        dockerImage.push(${Svc_Name})
                    
                     }
                 }
